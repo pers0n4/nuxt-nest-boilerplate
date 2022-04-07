@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "rootDir": "./",
+    "baseUrl": "./",
+    "outDir": "./dist/",
+    "paths": {
+      "~/*": ["./client/*"]
+    },
+    "typeRoots": ["node_modules/@types", "client", "server"],
+    "types": [
+      "@nuxt/types",
+      "@nuxtjs/axios",
+      "@types/node",
+      "@types/jest",
+      "@types/supertest"
+    ]
+  },
+  "exclude": ["node_modules", "dist"]
+}

@@ -1,0 +1,5 @@
+{
+  "*.**": "prettier --check --ignore-unknown",
+  "*.{css,scss,sass,html,vue}": "stylelint",
+  "*.{js,ts,vue}": "eslint --cache"
+}
