@@ -15,14 +15,14 @@
     "lint-fix": "prettier --write --list-different . && yarn lint:js --fix && yarn lint:style --fix",
     "lint:js": "eslint --ext \".js,.ts,.vue\" --ignore-path .gitignore .",
     "lint:prettier": "prettier --check .",
-    "lint:style": "stylelint \"**/*.{css,scss,sass,html,vue}\" --ignore-path .gitignore",
+    "lint:style": "stylelint \"**/*.{css,scss,sass,html,vue}\" --ignore-path .gitignore --config-basedir client",
     "prepare": "husky install",
-    "start": "nuxt start",
+    "start": "cross-env NODE_ENV=production node dist/server/app",
     "test": "yarn test:client && yarn test:server && yarn test:e2e",
-    "test:client": "jest --config ./jest-client.config.ts",
+    "test:client": "jest --config ./client/jest.config.ts",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./server/test/jest-e2e.json",
-    "test:server": "jest --config ./jest-server.config.ts",
+    "test:server": "jest --config ./server/jest.config.ts",
     "test:watch": "concurrently \"yarn:test:client --watch\" \"yarn:test:server --watch\" \"yarn:test:e2e --watch\""
   },
   "dependencies": {

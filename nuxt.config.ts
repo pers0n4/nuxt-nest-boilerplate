@@ -2,9 +2,10 @@ import type { NuxtConfig } from "@nuxt/types";
 
 const isDev = process.env.NODE_ENV !== "production";
 
-const config = async (): Promise<NuxtConfig> => ({
-  srcDir: "client/",
-  buildDir: "dist/client/",
+const config: NuxtConfig = {
+  rootDir: "client/",
+  buildDir: "../dist/client/",
+  modulesDir: ["../node_modules"],
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -17,10 +18,6 @@ const config = async (): Promise<NuxtConfig> => ({
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
   },
-
-  serverMiddleware: isDev
-    ? []
-    : [{ path: "/api", handler: (await import("./server/nest")).default }],
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
@@ -50,7 +47,7 @@ const config = async (): Promise<NuxtConfig> => ({
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: isDev ? "http://localhost:4000/api" : "http://localhost:3000/api",
+    baseURL: "/",
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
@@ -62,6 +59,12 @@ const config = async (): Promise<NuxtConfig> => ({
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
-});
 
-export default config;
+  telemetry: false,
+};
+
+export default Object.assign(config, {
+  axios: {
+    baseURL: isDev ? "http://localhost:4000/api" : "http://localhost:3000/api",
+  },
+});

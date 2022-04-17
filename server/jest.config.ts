@@ -2,14 +2,14 @@ import type { Config } from "@jest/types";
 
 const config: Config.InitialOptions = {
   moduleFileExtensions: ["js", "json", "ts"],
-  rootDir: "server",
+  rootDir: "src",
   testRegex: ".*\\.spec\\.ts$",
   transform: {
     "^.+\\.(t|j)s$": "ts-jest",
   },
   collectCoverage: true,
-  collectCoverageFrom: ["**/*.(t|j)s", "!**/*.e2e-spec.(t|j)s"],
-  coverageDirectory: "../coverage/server",
+  collectCoverageFrom: ["**/*.(t|j)s"],
+  coverageDirectory: "../../coverage/server",
   testEnvironment: "node",
 };
 

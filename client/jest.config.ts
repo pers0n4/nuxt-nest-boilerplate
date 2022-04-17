@@ -6,7 +6,6 @@ const config: Config.InitialOptions = {
     "^vue$": "vue/dist/vue.common.js",
   },
   moduleFileExtensions: ["ts", "js", "vue", "json"],
-  rootDir: "client",
   transform: {
     "^.+\\.(t|j)s$": "ts-jest",
     ".*\\.(vue)$": "vue-jest",
