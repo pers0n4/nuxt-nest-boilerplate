@@ -4,13 +4,14 @@
   "private": true,
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "concurrently \"npm:build:client\" \"npm:build:server\"",
+    "build": "concurrently \"yarn:build:*\"",
     "build:client": "nuxt build",
     "build:server": "nest build",
+    "dev": "concurrently \"yarn:dev:*\"",
     "dev:client": "nuxt",
     "dev:server": "nest start --debug --watch",
     "generate": "nuxt generate",
-    "lint": "yarn lint:js && yarn lint:style && yarn lint:prettier",
+    "lint": "concurrently \"yarn:lint:*\"",
     "lint-fix": "prettier --write --list-different . && yarn lint:js --fix && yarn lint:style --fix",
     "lint:js": "eslint --ext \".js,.ts,.vue\" --ignore-path .gitignore .",
     "lint:prettier": "prettier --check .",
@@ -19,8 +20,10 @@
     "start": "nuxt start",
     "test": "yarn test:client && yarn test:server && yarn test:e2e",
     "test:client": "jest --config ./jest-client.config.ts",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./server/test/jest-e2e.json",
-    "test:server": "jest --config ./jest-server.config.ts"
+    "test:server": "jest --config ./jest-server.config.ts",
+    "test:watch": "concurrently \"yarn:test:client --watch\" \"yarn:test:server --watch\" \"yarn:test:e2e --watch\""
   },
   "dependencies": {
     "@nestjs/common": "^8.4.4",
