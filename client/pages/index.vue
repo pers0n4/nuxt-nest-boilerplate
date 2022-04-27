@@ -10,7 +10,7 @@
     name: "IndexPage",
   })
   export default class IndexPage extends Vue {
-    private data: string;
+    private data!: string;
 
     async asyncData({ $axios }: Context) {
       try {
